@@ -1,0 +1,26 @@
+.header{
+
+}
+
+.header-title{
+    height: 100px;
+    border: 1px solid black;
+    font-family: "Brush Script MT", cursive;
+    font-size: 60px;
+    text-align: center;
+}
+
+.header-items{
+    position: relative;
+    height: 50px;
+    border: 1px solid black;
+}
+
+.header-item{
+    position: absolute;
+    /* position: relative; 使用该参数后，right:10px 不起作用。似乎只有 top left 会起作用*/
+    top: 10px;
+    right: 10px;
+    width: 200px;
+    /* margin-top: 10px; 使用absolute, top. 可以省略属性，因为作用一样。和父元素上边距保持 10px 的距离 */
+}
