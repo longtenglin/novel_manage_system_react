@@ -18,7 +18,7 @@ class Header extends React.Component {
                     {option.map((item, index) => {
                         const menu = <Menu items={item.children}/>;
                         return (
-                            <div className={"item-"+index+" header-item"}>
+                            <div className={"item-"+index+" header-item"} key={index}>
                                 <Dropdown overlay={menu}>
                                     <Button onClick={e => e.preventDefault()}>
                                         <Space>

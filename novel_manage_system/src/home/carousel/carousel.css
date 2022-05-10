@@ -1,6 +1,27 @@
-Carousel div{
+.carousel-items{
     height: 100%;
 }
-Carousel {
-    height: 500px;
+
+.carousel-item{
+    background: #364d79;
+    font-size: 50px;
+    text-align: center;
+    height: calc(100vh - 150px) !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-item div{
+    display: block;
+    color: #FFFFFF;
+    flex: 1;
+}
+
+.carousel-item img {
+    width: 100%;
+}
+
+.carousel-items div{
+    height: inherit;
 }

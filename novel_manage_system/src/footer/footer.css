@@ -1,0 +1,26 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    background: #1c1a1a;
+}
+.footer-main{
+    display: flex;
+    /*align-content: space-around;*/
+    justify-content: space-around;
+}
+.footer-contents{
+    min-width: 200px;
+    background: #1c1a1a;
+    color: #FFFFFF;
+}
+.footer .ant-card-head{
+    color: #FFFFFF;
+}
+
+.footer-bottom{
+    border-top: #FFFFFF 1px solid;
+    text-align: center;
+    line-height: 50px;
+    height: 50px;
+    color: #FFFFFF;
+}
