@@ -1,6 +1,7 @@
 import React from "react";
-import {Menu, Dropdown, Space, Button} from 'antd';
-import {DownOutlined} from '@ant-design/icons';
+import type { MenuProps } from 'antd';
+import {Menu} from 'antd';
+import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 import './header.css';
 
 class Header extends React.Component {
@@ -10,26 +11,16 @@ class Header extends React.Component {
     }
 
     render() {
-        const option = this.state.items ? this.state.items : items;
+        // const option = this.state.items ? this.state.items : items;
+        const onClick: MenuProps['onClick'] = e => {
+            console.log('click ', e);
+            this.setState({current: e.key});
+        };
         return (
             <div className="header">
                 <div className={"header-title"}>Novel Manage System</div>
                 <div className={"header-items"}>
-                    {option.map((item, index) => {
-                        const menu = <Menu items={item.children}/>;
-                        return (
-                            <div className={"item-"+index+" header-item"} key={index}>
-                                <Dropdown overlay={menu}>
-                                    <Button onClick={e => e.preventDefault()}>
-                                        <Space>
-                                            {item.label}
-                                            <DownOutlined/>
-                                        </Space>
-                                    </Button>
-                                </Dropdown>
-                            </div>
-                        )
-                    })}
+                    <Menu onClick={onClick} selectedKeys={[this.state.current]} mode="horizontal" items={items} />;
                 </div>
             </div>
         );
@@ -38,29 +29,59 @@ class Header extends React.Component {
 
 export default Header;
 
-const items = [
+const items: MenuProps['items'] = [
     {
-        label: "Hover me",
+        label: 'Navigation One',
+        key: 'mail',
+        icon: <MailOutlined />,
+    },
+    {
+        label: 'Navigation Two',
+        key: 'app',
+        icon: <AppstoreOutlined />,
+        disabled: true,
+    },
+    {
+        label: 'Navigation Three - Submenu',
+        key: 'SubMenu',
+        icon: <SettingOutlined />,
         children: [
             {
-                label: (
-                    <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-                        1st menu item
-                    </a>
-                )
-                , danger: false
-                , disabled: false
-                , icon: <></>
-                , title: "title"
+                type: 'group',
+                label: 'Item 1',
+                children: [
+                    {
+                        label: 'Option 1',
+                        key: 'setting:1',
+                    },
+                    {
+                        label: 'Option 2',
+                        key: 'setting:2',
+                    },
+                ],
             },
             {
-                danger: true,
-                label: 'a danger item'
-                , disabled: false
-                , icon: <></>
-                , title: "title"
+                type: 'group',
+                label: 'Item 2',
+                children: [
+                    {
+                        label: 'Option 3',
+                        key: 'setting:3',
+                    },
+                    {
+                        label: 'Option 4',
+                        key: 'setting:4',
+                    },
+                ],
             },
-        ]
-        , key: '1'
-    }
+        ],
+    },
+    {
+        label: (
+            <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
+                Navigation Four - Link
+            </a>
+        ),
+        key: 'alipay',
+    },
 ];
