@@ -3,6 +3,7 @@ import type { MenuProps } from 'antd';
 import {Menu} from 'antd';
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 import './header.css';
+import {Link} from "react-router-dom";
 
 class Header extends React.Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class Header extends React.Component {
             <div className="header">
                 <div className={"header-title"}>Novel Manage System</div>
                 <div className={"header-items"}>
-                    <Menu onClick={onClick} selectedKeys={[this.state.current]} mode="horizontal" items={items} />;
+                    <Menu onClick={onClick} selectedKeys={[this.state.current]} mode="horizontal" items={items} />
                 </div>
             </div>
         );
@@ -31,7 +32,7 @@ export default Header;
 
 const items: MenuProps['items'] = [
     {
-        label: 'Navigation One',
+        label: <Link to={"/novel"}>Novel</Link>,
         key: 'mail',
         icon: <MailOutlined />,
     },

@@ -1,10 +1,22 @@
 import Home from "./home/Home";
+import Header from "./header/Header";
+import Footer from "./footer/footer";
+import './App.css';
+import { Route, Link, Routes} from "react-router-dom";
+import Novel from "./novel/novel";
 
 function App() {
   return (
-      <div className="App">
-          <Home/>
-      </div>
+      <>
+          <div className="App">
+              <Header/>
+              <Routes>
+                      <Route exact path="/" element={<Home/>}/>
+                      <Route path="novel" element={<Novel/>}/>
+              </Routes>
+              <Footer/>
+          </div>
+      </>
   )
 }
 // import logo from './logo.svg';
