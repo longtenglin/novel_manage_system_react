@@ -1,0 +1,27 @@
+.person-main {
+    padding: 50px
+}
+
+.person-items {
+}
+
+.person-item {
+    margin-bottom: 15px;
+}
+
+.person-item .ant-card-body {
+    display: flex;
+}
+
+.person-list {
+
+}
+
+.person-image {
+    width: 250px;
+}
+
+.person-pagination {
+    display: flex;
+    justify-content: right;
+}

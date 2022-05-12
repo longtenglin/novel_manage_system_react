@@ -1,7 +1,7 @@
 import React from "react";
 import type { MenuProps } from 'antd';
 import {Menu} from 'antd';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
+import { ContainerOutlined, AppstoreOutlined, SettingOutlined, OrderedListOutlined } from '@ant-design/icons';
 import './header.css';
 import {Link} from "react-router-dom";
 
@@ -19,7 +19,7 @@ class Header extends React.Component {
         };
         return (
             <div className="header">
-                <div className={"header-title"}>Novel Manage System</div>
+                <div className={"header-title"}><Link to={"/"}>Novel Manage System</Link></div>
                 <div className={"header-items"}>
                     <Menu onClick={onClick} selectedKeys={[this.state.current]} mode="horizontal" items={items} />
                 </div>
@@ -34,55 +34,67 @@ const items: MenuProps['items'] = [
     {
         label: <Link to={"/novel"}>Novel</Link>,
         key: 'mail',
-        icon: <MailOutlined />,
+        icon: <ContainerOutlined />,
     },
     {
-        label: 'Navigation Two',
+        label: 'Ranking List',
         key: 'app',
-        icon: <AppstoreOutlined />,
+        icon: <OrderedListOutlined />,
         disabled: true,
     },
     {
-        label: 'Navigation Three - Submenu',
+        label: <Link to={"/person"}>PERSON</Link>,
         key: 'SubMenu',
         icon: <SettingOutlined />,
         children: [
             {
                 type: 'group',
-                label: 'Item 1',
+                label: 'PERSON',
                 children: [
                     {
-                        label: 'Option 1',
+                        label: <Link to={"/person"}>PERSON</Link>,
                         key: 'setting:1',
                     },
                     {
-                        label: 'Option 2',
+                        label: <Link to={"/person"}>PERSON</Link>,
                         key: 'setting:2',
                     },
                 ],
-            },
-            {
-                type: 'group',
-                label: 'Item 2',
-                children: [
-                    {
-                        label: 'Option 3',
-                        key: 'setting:3',
-                    },
-                    {
-                        label: 'Option 4',
-                        key: 'setting:4',
-                    },
-                ],
-            },
+            }
         ],
-    },
-    {
+    }
+    , {
+        label: <Link to={"/road"}>ROAD</Link>
+        , key: 'road'
+        , icon: <AppstoreOutlined />
+    }
+    , {
+        label: <Link to={"/skill"}>SKILL</Link>
+        , key: 'skill'
+        , icon: <AppstoreOutlined />
+    }
+    , {
+        label: <Link to={"/sect"}>SECT</Link>
+        , key: 'sect'
+        , icon: <AppstoreOutlined />
+    }
+    , {
+        label: <Link to={"/treasure"}>TREASURE</Link>
+        , key: 'treasure'
+        , icon: <AppstoreOutlined />
+    }
+    , {
+        label: <Link to={"/weapons"}>WEAPONS</Link>
+        , key: 'weapons'
+        , icon: <AppstoreOutlined />
+    }
+    , {
         label: (
             <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-                Navigation Four - Link
+                Ant Design
             </a>
         ),
         key: 'alipay',
+        icon: <AppstoreOutlined />,
     },
 ];
