@@ -10,28 +10,34 @@ class Person extends React.Component{
             dataSource: []
             , current: 1
             , pageSize: 10
+            , total: 10
         }
     }
 
     componentWillMount() {
-        this.setState({dataSource: getPersonList()})
+        getPersonList({current: this.state.current, pageSize: this.state.pageSize}).then(
+            result => {
+                this.setState(result);
+            }
+        )
     }
 
     getPersonList(){
         this.setState({dataSource: getPersonList()})
     }
     render() {
+        const { total, dataSource, current, pageSize} = this.state
         return (
             <div className={"person-main"}>
                 <Card className={"person-items"} title="Person List">
                     {
-                        this.state.dataSource.map((item, index)=>{
+                        dataSource.map((item, index)=>{
                             return (
                                 <Card className={"person-item"} type="inner" title={item.personName} key={index}>
                                     <Descriptions column={1} className={"person-content"}>
                                         <Descriptions.Item label={"personAttribute"}>{item.personAttribute}</Descriptions.Item>
                                         <Descriptions.Item label={"age"}>{item.age}</Descriptions.Item>
-                                        <Descriptions.Item label={"description"}>{item.description}</Descriptions.Item>
+                                        <Descriptions.Item label={"personDescription"}>{item.personDescription}</Descriptions.Item>
                                     </Descriptions>
                                     <Image className={"person-image"}
                                            alt={"cover"}
@@ -46,9 +52,11 @@ class Person extends React.Component{
                     }
                     <Pagination
                         className={"person-pagination"}
-                        total={85}
+                        total={total}
                         showSizeChanger
                         showQuickJumper
+                        current={current}
+                        pageSize={pageSize}
                         showTotal={total => `共 ${total} 条`}
                         onShowSizeChange={(current, size)=>{
                             console.log(current);
