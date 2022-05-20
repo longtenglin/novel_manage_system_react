@@ -5,6 +5,7 @@ import Footer from "./footer/footer";
 import Novel from "./novel/novel";
 import Sect from "./sect/sect";
 import Person from "./person/person";
+import Road from "./road/road";
 import Skill from "./skill/skill";
 import Treasure from "./treasure/treasure";
 import Weapons from "./weapons/weapons";
@@ -20,6 +21,7 @@ function App() {
                     <Route path="novel" element={<Novel/>}/>
                     <Route path="sect" element={<Sect/>}/>
                     <Route path={"/person"} element={<Person/>}/>
+                    <Route path={"/road"} element={<Road/>}/>
                     <Route path={"/skill"} component={<Skill/>}/>
                     <Route path={"/treasure"} element={<Treasure/>}/>
                     <Route path={"/weapons"} element={<Weapons/>}/>

@@ -7,10 +7,10 @@ class Novel extends React.Component{
     constructor() {
         super();
         this.state = {
-            dataSource: []
+            dataSource: items
             , current: 1
             , pageSize: 10
-            , total: 10
+            , total: 3
         }
     }
 
@@ -50,13 +50,14 @@ class Novel extends React.Component{
                         current={current}
                         pageSize={pageSize}
                         showTotal={total => `共 ${total} 条`}
-                        onShowSizeChange={(current, size)=>{
-                            console.log(current);
-                            console.log(size);
-                        }}
                         onChange={(page, pageSize)=>{
-                            console.log(page)
-                            console.log(pageSize)
+                            this.setState({current: page, pageSize: pageSize})
+                            getNovelList({
+                                current: page
+                                , pageSize: pageSize
+                            }).then(result => {
+                                this.setState(result)
+                            })
                         }}
                     />
                 </Card>
@@ -65,3 +66,42 @@ class Novel extends React.Component{
     }
 }
 export default Novel;
+
+const items = [
+    {
+        novelName: "XXX-XXX-XXX"
+        , novelType: "XXX-XXX"
+        , novelPubDate: "2009-09-20"
+        , novelAuthor: "XXX-XXX"
+        , novelDescription: "XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX"
+    }
+    , {
+        novelName: "XXX-XXX-XXX"
+        , novelType: "XXX-XXX"
+        , novelPubDate: "2022-05-12"
+        , novelAuthor: "XXX-XXX"
+        , novelDescription: "XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX"
+    }
+    , {
+        novelName: "XXX-XXX-XXX"
+        , novelType: "XXX-XXX"
+        , novelPubDate: "2022-05-12"
+        , novelAuthor: "XXX-XXX"
+        , novelDescription: "XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX" +
+            "-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX-XXX"
+    }
+]

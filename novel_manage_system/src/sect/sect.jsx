@@ -1,6 +1,7 @@
 import React from "react";
 import {Card, List, Space} from 'antd';
 import { StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
+import {getSectList} from "./sectservice";
 
 const IconText = ({ icon, text }) => (
     <Space>
@@ -9,19 +10,46 @@ const IconText = ({ icon, text }) => (
     </Space>
 );
 class Sect extends React.Component{
+
+    constructor() {
+        super();
+        this.state = {
+            dataSource: listData
+            , current: 1
+            , pageSize: 10
+            , total: 10
+        }
+    }
+
+    UNSAFE_componentWillMount() {
+        getSectList({
+            current: this.state.current
+            , pageSize: this.state.pageSize
+        }).then(result => {
+            this.setState(result);
+        })
+    }
+
     render() {
+        const {dataSource, current, pageSize, total} = this.state;
         return (
             <div className={"sect-main"}>
                 <Card className={"sect-items"} title="Sect List">
                     <List
                         bordered
                         className={"sect-list"}
-                        dataSource={listData}
+                        dataSource={dataSource}
                         itemLayout="vertical"
                         pagination={{
-                            pageSize: 10
-                            , onChange: (page)=>{
-                                console.log(page)
+                            pageSize: pageSize
+                            , onChange: (page, pageSize)=>{
+                                this.setState({current: page, pageSize: pageSize})
+                                getSectList({
+                                    current: page
+                                    , pageSize: pageSize
+                                }).then(result => {
+                                    this.setState(result);
+                                })
                             }
                         }}
                         renderItem={ item => {
@@ -43,10 +71,12 @@ class Sect extends React.Component{
                                 >
                                     <List.Item.Meta
                                         // avatar={"head image"}
-                                        description={item.description}
-                                        title={item.title}
+                                        description={item.sectType}
+                                        title={item.sectName}
                                     />
-                                    {item.content}
+                                    {item.sectAttribute}
+                                    <br/>
+                                    {item.sectDescription}
                                 </List.Item>
                             )
                         }}
@@ -62,11 +92,13 @@ const listData = [];
 for (let i = 0; i < 23; i++) {
     listData.push({
         href: 'https://ant.design',
-        title: `XXX-XXX-XXX-${i}`,
+        sectName: `XXX-XXX-XXX-${i}`,
         avatar: 'https://joeschmoe.io/api/v1/random',
-        description:
+        sectType:
             'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-        content:
+        sectAttribute:
+            'Ant Design',
+        sectDescription:
             'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.' +
             'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.' +
             'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.' +
